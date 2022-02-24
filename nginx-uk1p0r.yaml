@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: my-nginx-uk1p0r
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-uk1p0r
+  namespace: my-nginx-uk1p0r
+  labels:
+    name: nginx-uk1p0r
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: nginx-uk1p0r
+  template:
+    metadata:
+      namespace: my-nginx-uk1p0r
+      labels:
+        name: nginx-uk1p0r
+    spec:
+      containers:
+      - name: nginx-uk1p0r
+        image: nginx
+        ports:
+        - containerPort: 80
+
